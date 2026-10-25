@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>歡迎使用 Preview Image Saver</title>
+    <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+<div class="shell">
+
+    <aside class="rail">
+        <div class="brand"><img src="icons/icon-48.png" alt=""><span>Preview Image Saver</span></div>
+        <ol class="steps" id="rail" aria-label="教學步驟"></ol>
+        <p class="rail-foot">所有圖片只存在你的電腦，<br>不會經過任何伺服器。</p>
+        <button type="button" class="motion-btn" id="motionBtn">
+            <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+            <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M7 4l13 8-13 8z"/></svg>
+            <span>暫停動畫</span>
+        </button>
+    </aside>
+
+    <main class="main">
+
+        <!-- 第 1 步：認識功能 -->
+        <section class="step" data-step="1" data-title="認識功能" data-sub="一鍵存下封面與預覽圖" aria-labelledby="t1">
+            <div class="copy">
+                <p class="eyebrow"></p>
+                <h1 class="title" id="t1">在影片頁，一鍵存下封面與預覽圖</h1>
+                <p class="desc">按一下按鈕，圖片就依番號整理進你指定的資料夾。</p>
+                <ul class="points">
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>支援 JavDB、JavLibrary、JavTrailers</span></li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>自動建立「日期／演員 番號」資料夾並重新命名（找不到演員時只用番號）</span></li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>圖片直接存到你的電腦，不經過任何伺服器</span></li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>選圖時滑鼠停在縮圖上 0.5 秒，自動放大看清楚（可關閉）</span></li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>選圖時自動偵測人臉、標出臉佔比，一次挑出大臉的圖（本機運算，不上傳）</span></li>
+                </ul>
+                <div class="nav">
+                    <button type="button" class="btn primary" data-nav="next">開始設定</button>
+                    <button type="button" class="skip" data-nav="next">跳過</button>
+                </div>
+            </div>
+            <div class="stage">
+                <div class="seg" role="tablist" aria-label="功能列表">
+                    <button type="button" role="tab" data-tab="0" aria-selected="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>一鍵下載</button>
+                    <button type="button" role="tab" data-tab="1" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12l3 3 5-6"/></svg>選圖下載</button>
+                    <button type="button" role="tab" data-tab="2" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>自動歸檔</button>
+                    <button type="button" role="tab" data-tab="3" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></svg>可拖曳按鈕</button>
+                </div>
+                <div class="pvs">
+                    <div class="pv active" role="tabpanel" data-pv="0" aria-label="一鍵下載示意圖">
+                        <div class="mock" data-demo="download">
+                            <div class="mock-bar"><b></b><b></b><b></b></div>
+                            <div class="mock-grid"><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div></div>
+                            <div class="toast" aria-hidden="true"></div>
+                            <div class="fab"><span>下載圖片</span></div><div class="cursor" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 3l15 7-6.5 1.8L10 18z" fill="#fff" stroke="#111" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+                        </div>
+                    </div>
+                    <div class="pv" role="tabpanel" data-pv="1" aria-label="選圖下載示意圖">
+                        <div class="mock">
+                            <div class="mock-bar"><b></b><b></b><b></b></div>
+                            <div class="mock-grid"><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div></div>
+                            <div class="scrim">
+                                <div class="mini-modal">
+                                    <header>DEVR-018 <span class="cnt">已選 3 / 共 8 張</span></header>
+                                    <div class="grid4">
+                                        <div class="tile sel"></div><div class="tile"></div><div class="tile sel"></div><div class="tile"></div>
+                                        <div class="tile"></div><div class="tile sel"></div><div class="tile"></div><div class="tile"></div>
+                                    </div>
+                                    <footer><span class="dl">下載已選 (3)</span></footer>
+                                </div>
+                            </div>
+                            <div class="zoom-pop" aria-hidden="true"><i></i></div>
+                        </div>
+                    </div>
+                    <div class="pv" role="tabpanel" data-pv="2" aria-label="自動歸檔示意圖">
+                        <div class="tree-box">
+                            <ul>
+                                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>B_poses<span class="note">你選的資料夾</span>
+                                    <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>20261018<span class="note">下載日期</span>
+                                        <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>水戸かな JUVR-212<span class="note">演員＋番號</span>
+                                            <ul>
+                                                <li class="file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/></svg>JUVR-212_cover.jpg</li>
+                                                <li class="file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/></svg>JUVR-212_01.jpg</li>
+                                                <li class="file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/></svg>JUVR-212_02.jpg</li>
+                                            </ul>
+                                        </li></ul>
+                                    </li></ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pv" role="tabpanel" data-pv="3" aria-label="可拖曳按鈕示意圖">
+                        <div class="mock">
+                            <div class="mock-bar"><b></b><b></b><b></b></div>
+                            <div class="mock-grid"><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div></div>
+                            <svg class="drag-path" viewBox="0 0 560 286" preserveAspectRatio="none" aria-hidden="true">
+                                <defs><marker id="dragHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1l8 4-8 4z" fill="#B42F5A" stroke="none"/></marker></defs>
+                                <path d="M440 240 C 380 230, 290 160, 200 100" stroke="#B42F5A" stroke-width="2" stroke-dasharray="6 5" fill="none" marker-end="url(#dragHead)"/>
+                            </svg>
+                            <div class="fab ghost" aria-hidden="true"><span>下載圖片</span></div>
+                            <div class="fab drag" tabindex="0" role="button" aria-label="可拖曳的示範按鈕"><span class="pulse">下載圖片</span></div>
+                            <p class="hint-chip">試試看：用滑鼠拖曳按鈕</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第 2 步：儲存位置 -->
+        <section class="step" data-step="2" data-title="儲存位置" data-sub="選一個資料夾" aria-labelledby="t2">
+            <div class="copy">
+                <p class="eyebrow"></p>
+                <h1 class="title" id="t2">選擇儲存資料夾</h1>
+                <p class="desc">只需要設定一次。之後所有圖片都會存到這個資料夾底下。</p>
+                <div class="folder">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>
+                    <span id="folder">尚未選擇</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">授權狀態</span>
+                    <span id="permission" class="badge" data-state="none" role="status">-</span>
+                </div>
+                <div class="actions">
+                    <button type="button" class="btn sm primary" data-action="pick">選擇資料夾</button>
+                    <button type="button" class="btn sm" data-action="reauth">重新授權</button>
+                </div>
+                <p id="message" role="alert"></p>
+                <div class="nav">
+                    <button type="button" class="btn" data-nav="prev">上一步</button>
+                    <button type="button" class="btn primary" id="folderNext" data-nav="next" disabled>繼續</button>
+                    <button type="button" class="skip" data-nav="next">跳過</button>
+                </div>
+                <p class="fine">選好資料夾並授權後才能繼續；也可以先跳過，之後點工具列圖示再設定。</p>
+            </div>
+            <div class="stage">
+                <div class="tree-box">
+                    <ul>
+                        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>ComfyUI
+                            <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>input
+                                <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>B_poses<span class="note">← 選這一層就好</span></li></ul>
+                            </li></ul>
+                        </li>
+                    </ul>
+                </div>
+                <p class="stage-cap">選好之後，圖片會自動整理到日期與「演員 番號」資料夾底下。</p>
+            </div>
+        </section>
+
+        <!-- 第 3 步：下載方式 -->
+        <section class="step" data-step="3" data-title="下載方式" data-sub="直接下載或先選圖" aria-labelledby="t3">
+            <div class="copy">
+                <p class="eyebrow"></p>
+                <h1 class="title" id="t3">選擇下載方式</h1>
+                <p class="desc">按下網頁上的「下載圖片」時，要怎麼處理？</p>
+                <div class="options" role="radiogroup" aria-label="下載方式">
+                    <label class="opt">
+                        <input type="radio" name="mode" value="all" checked>
+                        <span><strong>直接下載全部<em>預設</em></strong><small>按一下就下載封面與全部預覽圖，最省事。</small></span>
+                    </label>
+                    <label class="opt">
+                        <input type="radio" name="mode" value="pick">
+                        <span><strong>下載前先選圖</strong><small>先跳出縮圖視窗，勾選想要的圖片再下載，並自動偵測人臉、標出臉佔比。檔名沿用原始編號。</small></span>
+                    </label>
+                </div>
+                <label class="opt check">
+                    <input type="checkbox" id="hoverZoomOpt" checked>
+                    <span><strong>滑鼠停留自動放大<em>預設開啟</em></strong><small>選圖視窗中，滑鼠停在縮圖上 0.5 秒會放大顯示原圖；關閉則不放大。</small></span>
+                </label>
+                <div class="nav">
+                    <button type="button" class="btn" data-nav="prev">上一步</button>
+                    <button type="button" class="btn primary" data-nav="next">繼續</button>
+                    <button type="button" class="skip" data-nav="next">跳過</button>
+                </div>
+                <p class="fine">之後隨時可以點工具列圖示，在設定裡切換。</p>
+            </div>
+            <div class="stage">
+                <div class="mode-preview active" data-mode-preview="all" role="img" aria-label="示意圖：按下按鈕後直接下載全部圖片">
+                    <div class="mock" data-demo="download">
+                        <div class="mock-bar"><b></b><b></b><b></b></div>
+                        <div class="mock-grid"><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div></div>
+                        <div class="toast" aria-hidden="true"></div>
+                        <div class="fab big"><span>下載圖片</span></div><div class="cursor" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 3l15 7-6.5 1.8L10 18z" fill="#fff" stroke="#111" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+                    </div>
+                    <p class="stage-cap">按一下，封面與全部預覽圖直接下載（可點按鈕重播）</p>
+                </div>
+                <div class="mode-preview" data-mode-preview="pick" role="img" aria-label="示意圖：按下按鈕後先跳出縮圖視窗，勾選後才下載">
+                    <div class="mock">
+                        <div class="mock-bar"><b></b><b></b><b></b></div>
+                        <div class="mock-grid"><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div></div>
+                        <div class="scrim">
+                            <div class="mini-modal">
+                                <header>DEVR-018 <span class="cnt">已選 3 / 共 8 張</span></header>
+                                <div class="grid4">
+                                    <div class="tile sel"></div><div class="tile"></div><div class="tile sel"></div><div class="tile"></div>
+                                    <div class="tile"></div><div class="tile sel"></div><div class="tile"></div><div class="tile"></div>
+                                </div>
+                                <footer><span class="dl">下載已選 (3)</span></footer>
+                            </div>
+                        </div>
+                        <div class="zoom-pop" aria-hidden="true"><i></i></div>
+                    </div>
+                    <p class="stage-cap">試試看：點縮圖勾選；滑鼠停在縮圖上 0.5 秒可放大</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第 4 步：臉佔比篩選 -->
+        <section class="step" data-step="4" data-title="臉佔比篩選" data-sub="一次挑出大臉的圖" aria-labelledby="t4">
+            <div class="copy">
+                <p class="eyebrow"></p>
+                <h1 class="title" id="t4">用臉佔比挑出大臉的圖</h1>
+                <p class="desc">選圖視窗一開啟就會自動偵測人臉，框出每張臉並標示佔比，再用滑桿一次勾出夠大的。</p>
+                <ul class="points">
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>縮圖上框出每張臉（多人各自一個框），佔比顯示在右上角，不會蓋住人臉</span></li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>拖「臉佔比 ≥ N%」滑桿，自動勾選最大的臉達標的圖，之後仍可手動增減</span></li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>兩個下拉選單可換算法；預設「五官框＋邊長比」適合換臉挑圖（邊長比 × 圖片邊長 ≈ 臉的像素）</span></li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>彈出框可拖曳標題列移動、拖右下角縮放，縮圖會跟著變大；偵測在本機執行，不上傳圖片</span></li>
+                </ul>
+                <div class="nav">
+                    <button type="button" class="btn" data-nav="prev">上一步</button>
+                    <button type="button" class="btn primary" data-nav="next">繼續</button>
+                    <button type="button" class="skip" data-nav="next">跳過</button>
+                </div>
+                <p class="fine">需要在上一步選「下載前先選圖」，才會出現選圖視窗與人臉偵測。</p>
+            </div>
+            <div class="stage">
+                <div class="face-demo" role="group" aria-label="示範：拖動滑桿依臉佔比篩選">
+                    <div class="fd-head"><span>DEVR-018</span><span class="fd-count"></span></div>
+                    <div class="fd-bar">
+                        <span class="fd-chip">五官框</span><span class="fd-chip">邊長比</span>
+                        <span>臉佔比 ≥ <b class="fd-val"></b></span>
+                        <input type="range" min="0" max="50" step="1" value="15" aria-label="示範：臉佔整張圖的最低比例">
+                    </div>
+                    <div class="fd-grid">
+                        <div class="tile" data-r="43"><i class="fbox" style="--x:33%;--y:14%;--w:34%;--h:54%"></i><span class="fscore">43%</span></div>
+                        <div class="tile" data-r="28"><i class="fbox" style="--x:39%;--y:20%;--w:22%;--h:35%"></i><span class="fscore">28%</span></div>
+                        <div class="tile" data-r="17"><i class="fbox" style="--x:43%;--y:25%;--w:13.4%;--h:21.5%"></i><span class="fscore">17%</span></div>
+                        <div class="tile" data-r="9"><i class="fbox" style="--x:45%;--y:30%;--w:7%;--h:11.4%"></i><span class="fscore">9%</span></div>
+                        <div class="tile" data-r="0"></div>
+                        <div class="tile" data-r="31"><i class="fbox" style="--x:12%;--y:18%;--w:24.5%;--h:39%"></i><span class="fscore">31%</span></div>
+                        <div class="tile" data-r="12"><i class="fbox" style="--x:60%;--y:22%;--w:9.5%;--h:15%"></i><span class="fscore">12%</span></div>
+                        <div class="tile" data-r="22"><i class="fbox" style="--x:30%;--y:20%;--w:17.4%;--h:27.8%"></i><span class="fscore">22%</span></div>
+                    </div>
+                </div>
+                <p class="stage-cap">試試看：拖動滑桿，臉夠大的圖會自動被勾選（綠色＝達標、橘色＝未達標）</p>
+            </div>
+        </section>
+
+        <!-- 第 5 步：釘選圖示 -->
+        <section class="step" data-step="5" data-title="釘選圖示" data-sub="隨時開啟設定" aria-labelledby="t5">
+            <div class="copy">
+                <p class="eyebrow"></p>
+                <h1 class="title" id="t5">釘選到工具列</h1>
+                <p class="desc">之後想換資料夾、重新授權，或重看教學，點工具列上的圖示就能開啟設定。</p>
+                <div class="nav">
+                    <button type="button" class="btn" data-nav="prev">上一步</button>
+                    <button type="button" class="btn primary" data-nav="next">繼續</button>
+                    <button type="button" class="skip" data-nav="next">跳過</button>
+                </div>
+                <p class="fine">已經釘選了？直接按繼續就好。</p>
+            </div>
+            <div class="stage">
+                <div class="illus" role="img" aria-label="示意圖：點擊瀏覽器右上角的擴充功能圖示，再按下 Preview Image Saver 旁邊的圖釘">
+                    <div class="browser">
+                        <div class="tabbar"><b></b><b></b><b></b><em></em></div>
+                        <div class="toolbar">
+                            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6l-6 6 6 6"/></svg>
+                            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg>
+                            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 11-3-6.7L21 8M21 3v5h-5"/></svg>
+                            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
+                            <span class="addr"></span>
+                            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>
+                            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11H19V7a2 2 0 00-2-2h-4V3.5a2.5 2.5 0 00-5 0V5H4a2 2 0 00-2 2v3.8h1.5a2.7 2.7 0 010 5.4H2V20a2 2 0 002 2h3.8v-1.5a2.7 2.7 0 015.4 0V22H17a2 2 0 002-2v-4h1.5a2.5 2.5 0 000-5z"/></svg>
+                            <span class="avatar"></span>
+                        </div>
+                    </div>
+                    <div class="hl" style="left:426px;top:102px;width:28px;height:28px"></div>
+                    <div class="dropdown">
+                        <h4>擴充功能</h4>
+                        <p>點圖釘，即可把擴充功能固定在工具列上。</p>
+                        <div class="row">
+                            <img src="icons/icon-48.png" alt="">
+                            <span>Preview Image Saver</span>
+                            <svg class="pin-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17v5M9 3h6l-1 6 3 3v2H7v-2l3-3z"/></svg>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                        </div>
+                    </div>
+                    <div class="hl pin" style="left:420px;top:216px;width:26px;height:26px"></div>
+                    <svg class="arrows" viewBox="0 0 520 330" aria-hidden="true">
+                        <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1l8 4-8 4z" fill="#B42F5A"/></marker></defs>
+                        <path d="M276 31 C 340 31, 400 60, 424 100" marker-end="url(#ah)"/>
+                        <path d="M198 228 C 250 290, 410 290, 433 247" marker-end="url(#ah)"/>
+                    </svg>
+                    <div class="cursor" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 3l15 7-6.5 1.8L10 18z" fill="#fff" stroke="#111" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+                    <div class="callout" style="left:16px;top:14px">1. 點擊瀏覽器右上角的擴充功能圖示</div>
+                    <div class="callout" style="left:6px;top:204px;animation-delay:.3s">2. 將擴充功能釘選到工具列</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第 6 步：支援網站 -->
+        <section class="step" data-step="6" data-title="支援網站" data-sub="三個網站" aria-labelledby="t6">
+            <div class="copy">
+                <p class="eyebrow"></p>
+                <h1 class="title" id="t6">可以從這些網站下載</h1>
+                <p class="desc">打開下列網站的影片頁，右下角就會出現按鈕。</p>
+                <div class="sites">
+                    <div class="site"><span class="letter">D</span><div><strong>JavDB</strong><span class="d">javdb.com/v/…</span></div><em>封面＋預覽圖</em></div>
+                    <div class="site"><span class="letter">L</span><div><strong>JavLibrary</strong><span class="d">www.javlibrary.com 影片頁</span></div><em>封面＋預覽圖</em></div>
+                    <div class="site"><span class="letter">T</span><div><strong>JavTrailers</strong><span class="d">javtrailers.com/video/…</span></div><em>封面＋預覽圖</em></div>
+                </div>
+                <div class="nav">
+                    <button type="button" class="btn" data-nav="prev">上一步</button>
+                    <button type="button" class="btn primary" data-nav="next">繼續</button>
+                    <button type="button" class="skip" data-nav="next">跳過</button>
+                </div>
+            </div>
+            <div class="stage">
+                <div class="sheet" role="img" aria-label="示意圖：一張大封面加上依序編號的預覽縮圖">
+                    <div class="frame cover"><i>COVER</i></div>
+                    <div class="frame"><i>01</i></div><div class="frame"><i>02</i></div><div class="frame"><i>03</i></div><div class="frame"><i>04</i></div>
+                    <div class="frame"><i>05</i></div><div class="frame"><i>06</i></div><div class="frame"><i>07</i></div><div class="frame"><i>08</i></div>
+                    <div class="frame"><i>09</i></div><div class="frame"><i>10</i></div><div class="frame"><i>11</i></div><div class="frame"><i>12</i></div><div class="frame"><i>13</i></div><div class="frame"><i>14</i></div>
+                    <div class="frame"><i>15</i></div><div class="frame"><i>16</i></div><div class="frame"><i>17</i></div><div class="frame"><i>18</i></div><div class="frame"><i>19</i></div><div class="frame"><i>20</i></div>
+                </div>
+                <p class="stage-cap">一張封面 + 全部預覽圖，依序編號、一次存好</p>
+            </div>
+        </section>
+
+        <!-- 第 7 步：開始使用 -->
+        <section class="step" data-step="7" data-title="開始使用" data-sub="全部設定完成" aria-labelledby="t7">
+            <div class="copy">
+                <p class="eyebrow"></p>
+                <h1 class="title" id="t7">全部設定完成！</h1>
+                <p class="desc">現在可以開始下載圖片了。</p>
+                <ul class="checklist">
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>打開支援網站的任一影片頁</span></li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>按右下角「下載圖片」，依你的設定直接下載或先選圖</span></li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>按鈕可以拖曳，位置會被記住</span></li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>選圖視窗可拖曳標題列移動、拖右下角縮放，並用臉佔比滑桿一次挑出大臉的圖</span></li>
+                </ul>
+                <div class="nav">
+                    <button type="button" class="btn" data-nav="prev">上一步</button>
+                    <button type="button" class="btn primary" data-nav="finish">開始使用</button>
+                </div>
+                <p class="fine">想改設定或重看教學？點工具列圖示即可。</p>
+            </div>
+            <div class="stage">
+                <div style="height:340px">
+                    <div class="mock">
+                        <div class="mock-bar"><b></b><b></b><b></b></div>
+                        <div class="mock-grid"><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div></div>
+                        <div class="fab big"><span class="pulse">下載圖片</span></div>
+                    </div>
+                </div>
+                <p class="stage-cap">到影片頁，按右下角的按鈕</p>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+    <script src="store.js"></script>
+    <script src="folder-ui.js"></script>
+    <script src="settings.js"></script>
+    <script src="welcome.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Preview Image Saver",
+  "version": "0.7.11",
+  "description": "在影片頁一鍵下載封面與預覽圖，依番號建立資料夾並重新命名。",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": ["storage", "offscreen"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "host_permissions": ["https://c0.jdbstatic.com/*", "https://pics.dmm.co.jp/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://javdb.com/v/*",
+        "https://www.javlibrary.com/*",
+        "https://javtrailers.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_title": "Preview Image Saver",
+    "default_popup": "popup.html"
+  }
+}

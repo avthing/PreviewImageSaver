@@ -1,0 +1,143 @@
+/* 彈出視窗與教學頁共用的樣式（design tokens + 基本元件） */
+:root {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --surface-muted: #f1f4f9;
+    --border: #e2e8f0;
+    --text: #0f172a;
+    --text-muted: #475569;
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --on-primary: #ffffff;
+    --ok: #15803d;
+    --ok-bg: #dcfce7;
+    --warn: #b45309;
+    --warn-bg: #fef3c7;
+    --idle: #475569;
+    --idle-bg: #e2e8f0;
+    --danger: #b91c1c;
+    --danger-bg: #fee2e2;
+    --shadow: 0 1px 2px rgba(15, 23, 42, .06), 0 8px 24px rgba(15, 23, 42, .06);
+    --radius: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0b1120;
+        --surface: #131c31;
+        --surface-muted: #1a2540;
+        --border: #26334f;
+        --text: #e8edf7;
+        --text-muted: #a3b0c8;
+        --primary: #3b82f6;
+        --primary-hover: #60a5fa;
+        --on-primary: #0b1120;
+        --ok: #4ade80;
+        --ok-bg: #12331f;
+        --warn: #fbbf24;
+        --warn-bg: #3a2c0c;
+        --idle: #a3b0c8;
+        --idle-bg: #26334f;
+        --danger: #fca5a5;
+        --danger-bg: #3b1616;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+    }
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 15px/1.6 "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
+}
+
+a { color: var(--primary); }
+
+svg { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.folder {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--surface-muted);
+    border: 1px solid var(--border);
+    font-weight: 600;
+    word-break: break-all;
+}
+.folder svg { color: var(--primary); }
+
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
+.label { font-size: 13px; color: var(--text-muted); }
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--idle);
+    background: var(--idle-bg);
+}
+.badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+}
+.badge[data-state="granted"] { color: var(--ok); background: var(--ok-bg); }
+.badge[data-state="prompt"] { color: var(--warn); background: var(--warn-bg); }
+
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color .18s, border-color .18s, color .18s;
+}
+button:hover { background: var(--surface-muted); border-color: var(--text-muted); }
+button.primary { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+button.primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+button:disabled { opacity: .45; cursor: default; }
+button:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+#message {
+    margin: 14px 0 0;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: var(--danger-bg);
+    color: var(--danger);
+    font-size: 14px;
+}
+#message:empty { display: none; }
+
+.path { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.path code, code.chip {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--surface-muted);
+    border: 1px solid var(--border);
+    font: 13px/1.4 Consolas, "Courier New", monospace;
+}
+.path .sep { color: var(--text-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+}
